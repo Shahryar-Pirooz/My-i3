@@ -107,16 +107,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -178,45 +178,51 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# Assigns 
+assign [class="firefox"] $ws1
+assign [class="Brave-browser"] $ws1
+assign [class="Xfce4-terminal"] $ws2
+assign [class="code"] $ws3
+assign [class="Code"] $ws3
+assign [class="TelegramDesktop"] $ws4
+assign [class="telegram-desktop"] $ws4
+assign [class="Parole"] $ws5
+assign [class="parole"] $ws5
+assign [class="Thunar"] $ws10
 # MY COLORS
 # 
-#     Background: (46, 46, 46); #2e2e2e
-#     Comments: (121, 121, 121); #797979
-#     white: (214, 214, 214); #d6d6d6
-#     Yellow: (229, 181, 103); #e5b567
-#     Green: (180, 210, 115); #b4d273
-#     Orange: (232, 125, 62); #e87d3e
-#     Purple: (158, 134, 200); #9e86c8
-#     Pink: (176, 82, 121); #b05279
-#     Blue: (108, 153, 187); #6c99bb
-set $bg #2e2e2e
-set $comments #797979
-set $white #d6d6d6
-set $yellow #e5b567
-set $green #b4d273
-set $orange #e87d3e
-set $purple #9e86c8
-set $pink #b05279
-set $blue #6c99bb
+set $bg #00111b
+set $C1 #180539
+set $C2 #3a4e6b
+set $C3 #69d8e6
+set $white #f3f3f3
 bar {
         status_command i3blocks
 	font pango: cascadiaCode 9
 	colors {
 	background $bg
-	statusline $white
-	focused_workspace $bg $blue $white
-	inactive_workspace $bg $bg $blue
+	statusline $C3
+	focused_workspace $C2 $bg $C3
+	inactive_workspace $bg $bg $white
 	}
 }
 # class                 border  backgr. text    indicator child_border
-client.focused          $blue	$blue	$white	$white	$comments
-client.focused_inactive $blue	$comment $blue	$pink   $comments
-client.unfocused	$blue   $white	$blue	$pink   $comments
+client.focused          $bg	$bg	$white	$white	$C3
+client.focused_inactive $white	$white	$bg	$bg	$white
+client.unfocused	$white	$white	$bg	$bg	$white
 font pango: cascadiaCode 10
 # my configs ( I just change Dmenu on above)
 #	execs
 exec setxkbmap -layout 'us,ir' -option 'grp:shift_caps_toggle'
-exec "feh --bg-scale ./Pictures/jvj55az9r5f41.png"
+exec "feh --bg-scale ./Pictures/Programmer.jpg"
 #	mybind
 bindcode $mod+107 exec xfce4-screenshooter -f
 bindcode $mod+Ctrl+107 exec xfce4-screenshooter -r
+#	Gaps and border
+smart_gaps on
+gaps inner 10
+default_border pixel 1
+default_floating_border normal
+
+# Hide borders
+hide_edge_borders none
